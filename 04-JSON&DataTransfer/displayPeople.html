@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>People</title>
+    <meta charset="UTF-8">
+</head>
+<body>
+<h1>People</h1>
+<input type="button" value="Display people data">
+<ol></ol>
+
+<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+<script>
+    var isEmptyList = true;
+    $(document).ready(function () {
+        $('input').click(function () {
+            if(isEmptyList){
+                const xhr = new XMLHttpRequest();
+                xhr.onreadystatechange = function(){
+                    if(this.readyState === 4 && this.status === 200){
+                        const peopleData = JSON.parse(this.response);
+                        for(let personData of peopleData) {
+                            $('ol').append(`<li>${personData['name']} ${personData['surname'].toUpperCase()}, ${personData['country']}</li>`);
+                        }
+                    }
+                };
+                xhr.open('GET', 'https://gist.githubusercontent.com/ropczan/6c16331ad6333639f98537743b27478c/raw/bd8dcf66b5675e6bd02bd3e137fee0202e298996/people.json');
+                xhr.send();
+            }
+        });
+    });
+</script>
+
+</body>
+</html>

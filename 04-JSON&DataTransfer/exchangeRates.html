@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Exchange rates</title>
+    <meta charset="UTF-8">
+</head>
+<body>
+<h1>Exchange rates</h1>
+<p id="eur"></p>
+<p id="usd"></p>
+<p id="gbp"></p>
+
+<script>
+    const xhr = new XMLHttpRequest();
+    xhr.onreadystatechange = function(){
+        if(this.readyState === 4 && this.status === 200){
+            const response = JSON.parse(this.response);
+            document.getElementById('eur').innerHTML = `EUR: ${response[0]['rates'][7]['mid']} zł`;
+            document.getElementById('usd').innerHTML = `USD: ${response[0]['rates'][1]['mid']} zł`;
+            document.getElementById('gbp').innerHTML = `GBP: ${response[0]['rates'][10]['mid']} zł`;
+        }
+    };
+    xhr.open('GET', 'http://api.nbp.pl/api/exchangerates/tables/a/');
+    xhr.send();
+</script>
+
+</body>
+</html>

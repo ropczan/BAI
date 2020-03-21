@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>People</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.css">
+</head>
+<body>
+<h1>People displays by framework - Data Tables</h1>
+<table id="table_id" class="display"></table>
+<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.js"></script>
+<script>
+    $(document).ready(function () {
+        const xhr = new XMLHttpRequest();
+        xhr.onreadystatechange = function () {
+            if (this.readyState === 4 && this.status === 200) {
+                const peopleData = JSON.parse(this.response);
+                $('#table_id').DataTable({
+                    data: peopleData,
+                    columns: [
+                        {data: 'name'},
+                        {data: 'surname'},
+                        {data: 'age'},
+                        {data: 'country'},
+                        {data: 'email'}
+                    ]
+                });
+            }
+        };
+        xhr.open('GET', 'https://gist.githubusercontent.com/ropczan/6c16331ad6333639f98537743b27478c/raw/bd8dcf66b5675e6bd02bd3e137fee0202e298996/people.json');
+        xhr.send();
+    });
+</script>
+
+</body>
+</html>
