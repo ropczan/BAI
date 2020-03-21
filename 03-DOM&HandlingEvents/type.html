@@ -23,8 +23,20 @@
 		<textarea rows="15" cols="50"></textarea><br>
 		
 		<script>
-			// a JavaScript code here ...
-			
+			let textArea = document.querySelector('textarea');
+			let start = false;
+			textArea.addEventListener('input', function () {
+				if(!start) {
+					setTimeout(function () {
+						let wordsResult = textArea.value.split(' ').length;
+						let charactersResult = textArea.value.length;
+						let resultParagraph = document.createElement('p');
+						resultParagraph.innerHTML = `Result: amount of words ${wordsResult} and amount of characters ${charactersResult}`;
+						document.body.appendChild(resultParagraph);
+					}, 30000);
+				start = true;
+				}
+			});
 		</script>
 		
 	</body>

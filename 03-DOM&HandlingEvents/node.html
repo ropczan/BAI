@@ -6,8 +6,32 @@
 	</head>
 	<body>
 		<script>
-			// a JavaScript code here ...
-			
+			let table = document.createElement('table');
+			table.style.borderCollapse = "collapse";
+			table.style.border = "1px solid black";
+			let firstRow = table.insertRow(0);
+			let cell1 = firstRow.insertCell(0);
+			cell1.innerHTML = "1";
+			cell1.style.border = "1px solid black";
+			cell1.style.width = "100px";
+			cell1.style.textAlign = "center";
+			let cell2 = firstRow.insertCell(1);
+			cell2.innerHTML = "2";
+			cell2.style.border = "1px solid black";
+			cell2.style.width = "100px";
+			cell2.style.textAlign = "center";
+			let secondRow = table.insertRow(1);
+			let cell3 = secondRow.insertCell(0);
+			cell3.innerHTML = "3";
+			cell3.style.border = "1px solid black";
+			cell3.style.width = "100px";
+			cell3.style.textAlign = "center";
+			let cell4 = secondRow.insertCell(1);
+			cell4.innerHTML = "4";
+			cell4.style.border = "1px solid black";
+			cell4.style.width = "100px";
+			cell4.style.textAlign = "center";
+			document.body.appendChild(table);
 		</script>
 	</body>
 </html>

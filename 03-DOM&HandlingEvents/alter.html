@@ -7,7 +7,7 @@
 	<body>
 		<h1>Another Brick in the Wall</h1>
 		<h3>Pink Floyd</h3>
-		<p>We don't need no education<br>
+		<p oncopy="alert('copyright!')">We don't need no education<br>
 		We don't need no thought control<br>
 		No dark sarcasm in the classroom<br>
 		Teachers leave them kids alone<br>
@@ -20,8 +20,48 @@
 		and psychedelic music.</p>
 		
 		<script>
-			// a JavaScript code here ...
-			
+			let isAddedImg = false;
+			let isDescriptionVisible = false;
+			let isAddedPartTwo = false;
+			let title = document.getElementsByTagName("h1")[0];
+			let bandName = document.getElementsByTagName("h3")[0];
+			let firstParagraph = document.getElementsByTagName("p")[0];
+			let secondParagraph = document.getElementsByTagName("p")[1];
+
+			//add text to title
+			title.addEventListener('click',function () {
+				if(!isAddedPartTwo){
+					title.innerHTML += ' (Part 2)';
+					isAddedPartTwo = true;
+				}
+			});
+
+			//show description after click to band name
+			bandName.addEventListener('click', function () {
+				isDescriptionVisible = true;
+				secondParagraph.style.visibility = "visible";
+			});
+
+			//change background color after double click event
+			document.body.addEventListener('dblclick',function() {
+				document.body.style.backgroundColor = 'yellow';
+			});
+
+			//add image
+			secondParagraph.addEventListener('click', function () {
+				if(isDescriptionVisible && !isAddedImg){
+					let img = document.createElement("img");
+					img.src = "https://upload.wikimedia.org/wikipedia/en/d/d6/Pink_Floyd_-_all_members.jpg";
+					document.body.appendChild(img);
+					isAddedImg = true;
+				}
+			});
+
+			//change lyrics font style after click event
+			firstParagraph.addEventListener('click', function () {
+				firstParagraph.style.fontStyle = "italic";
+			})
+
 		</script>
 	</body>
 </html>

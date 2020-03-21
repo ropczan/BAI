@@ -9,16 +9,21 @@
 <body>
 	<h1>Filling in a form</h1>
 	<form>
-		<p>University:<br><input type="text"></p>
-		<p>Address:<br><input type="text"></p>
+		<p>University:<br><input id="first-input" type="text"></p>
+		<p>Address:<br><input id="second-input" type="text"></p>
 		<button type="button">Hint</button>
 	</form>
 
 	<script>
-		// a JavaScript code here ...
 		var university = "Cracow University of Economics";
 		var address = "Rakowicka 27, Krakow, POLAND";
-
+		let firstInput = document.getElementById('first-input');
+		let secondInput = document.getElementById('second-input');
+		let button = document.querySelector('button');
+		button.addEventListener('click', function () {
+			firstInput.value = university;
+			secondInput.value = address;
+		});
 	</script>
 </body>
 
