@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+</head>
+<body>
+    <div id="app">
+        <div v-if="errored">
+            Something went wrong!
+        </div>
+        <div v-else>
+            <div v-if="loading">
+                Loading...
+            </div>
+            <div v-else>
+                <table style="width: 80%;">
+                    <tr>
+                        <th>Currency</th>
+                        <th>Code</th>
+                        <th>Mid</th>
+                    </tr>
+                    <tr v-for="item of currency">
+                        <td>{{ item.currency }}</td>
+                        <td>{{ item.code }}</td>
+                        <td>{{ item.mid }}</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+    <script>
+        var app = new Vue({
+            el: '#app',
+            data: {
+                currency: null
+            },
+            mounted () {
+                axios
+                .get('http://api.nbp.pl/api/exchangerates/tables/a/')
+                .then(response => (this.currency = response.data[0].rates))
+                .catch(error => {
+                    console.log(error)
+                    this.errored = true
+                })
+                .finally(() => this.loading = false)
+            }
+        });
+    </script>
+    <style>
+        table, th, td {
+        border: 1px solid black;
+        border-collapse: collapse;
+        }
+        th, td {
+        padding: 15px;
+        }
+    </style>
+</body>
+</html>
