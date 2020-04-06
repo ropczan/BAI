@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+  <div id="app">
+      <input type="checkbox" id="matematyka" v-model="courses" value="matematyka">
+      <label for="matematyka">Matematyka</label><br>
+      <input type="checkbox" id="biologia" v-model="courses" value="biologia">
+      <label for="biologia">Biologia</label><br>
+      <input type="checkbox" id="polski" v-model="courses" value="polski">
+      <label for="polski">Polski</label><br>
+      <input type="checkbox" id="wf" v-model="courses" value="wf">
+      <label for="wf">WF</label><br>
+      <input type="checkbox" id="fizyka" v-model="courses" value="fizyka">
+      <label for="fizyka">Fizyka</label><br>
+      <p>Wybrano: {{ courses.length }} przedmioty</p>
+  </div>
+  <script>
+    var app = new Vue({
+      el: '#app',
+      data: {
+        courses: []
+      }
+    });
+  </script>
+
+</body>
+</html>

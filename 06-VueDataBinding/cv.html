@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+  <div id="app">
+    <form v-on:submit="zapisz">
+        <span>Imie:</span>
+        <input type="text" v-model="form.imie"><br><br>
+        <span>Nazwisko:</span>
+        <input type="text" v-model="form.nazwisko"><br><br>
+        <span>Wiek:</span>
+        <input type="number" v-model="form.wiek"><br><br>
+        <span>Płeć:</span>
+        <select v-model="form.plec">
+            <option>Mezczyzna</option>
+            <option>Kobieta</option>
+        </select><br><br>
+        <span>Wykształcenie:</span>
+        <select v-model="form.wyksztalcenie">
+            <option>brak</option>
+            <option>podstawowe</option>
+            <option>średnie</option>
+            <option>wyzsze</option>
+        </select><br><br>
+        <span>Umiejętności:</span>
+        <select v-model="form.umiejetnosci">
+            <option>obsługa komputera</option>
+            <option>prawo jazdy</option>
+            <option>kreatywność</option>
+            <option>praca w zespole</option>
+        </select><br><br>
+        <button type="submit">Zapisz</button>
+    </form>
+    <button @click="czytaj">Czytaj</button>
+  </div>
+  <script>
+    var app = new Vue({
+      el: '#app',
+      data: {
+        form: {
+            imie: '',
+            nazwisko: '',
+            wiek: '',
+            plec: '',
+            wyksztalcenie: '',
+            umiejetnosci: '',   
+        }
+      },
+      methods: {
+          zapisz(){
+              localStorage.setItem('cv',JSON.stringify(this.form));
+          },
+          czytaj(){
+              console.log(JSON.parse(window.localStorage.getItem('cv')));
+          }
+      }
+    });
+  </script>
+
+</body>
+</html>
