@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+  <div id="app">
+    <architecture :elements="elements"></architecture>
+  </div>
+
+  <script>
+    Vue.component('architecture', {
+      template: '<div><h1>Architektura von Neumanna</h1><ul><li v-for="item in elements">{{item}}</li></ul></div>',
+      props: {
+          elements: {
+              type: Array
+          }
+      }
+    });
+
+    new Vue({
+      el: '#app',
+      data: {
+          elements: ['memory','control unit','arithmetic logic unit','input','output','accumulator']
+      }
+    })
+  </script>
+
+</body>
+</html>

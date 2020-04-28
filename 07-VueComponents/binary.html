@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+  <div id="app">
+      <div v-for="item in values">
+        <convert :value="item"></convert>
+      </div>
+  </div>
+
+  <script>
+    Vue.component('convert', {
+      template: '<p>{{value}}(10) = {{convert}}(2)</p>',
+      props: {
+          value: {
+              type: Number
+          }
+      },
+      computed: {
+          convert() {
+              return this.value.toString(2);
+          }
+      }
+    });
+
+    new Vue({
+      el: '#app',
+      data: {
+          values: [8, 170, 204, 3855]
+      }
+    })
+  </script>
+
+</body>
+</html>

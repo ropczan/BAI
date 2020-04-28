@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+  <div id="app">
+    <film1></film1>
+    <film2></film2>
+    <film3></film3>
+  </div>
+
+  <script>
+    Vue.component('film1', {
+      template: '<h1>Nietykalni - Olivier Nakache / Éric Toledano ( 2011 )</h1>'
+    });
+    Vue.component('film2', {
+      template: '<h1>Forrest Gump - Robert Zemeckis ( 1994 )</h1>'
+    });
+    Vue.component('film3', {
+      template: '<h1>Green book - Peter Farrelly ( 2018 )</h1>'
+    });
+
+    new Vue({
+      el: '#app'
+    })
+  </script>
+
+</body>
+</html>
