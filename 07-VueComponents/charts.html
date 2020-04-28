@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.bundle.min.js"></script>
+</head>
+<body>
+  <div id="app">
+        <chart :values="values" :labels="labels"></chart>
+  </div>
+
+  <script>
+    Vue.component('chart', {
+      template: '<canvas id="myChart"></canvas>',
+      props: {
+          values: {
+              type: Array
+          },
+          labels: {
+              type: Array
+          }
+      },
+      mounted() {
+            const ctx = document.getElementById('myChart').getContext('2d');
+            new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: this.labels,
+                    datasets: [
+                        {
+                            label: 'TEST',
+                            data: this.values,
+                            backgroundColor: 'rgba(255, 99, 132, 0.2)'
+                        }
+                    ]
+                },
+            });
+      }
+    });
+
+    new Vue({
+      el: '#app',
+      data: {
+          values: [123, 321, 234, 567],
+          labels: ['test1','test2','test3','test4']
+      }
+    })
+  </script>
+
+</body>
+</html>

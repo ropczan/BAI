@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+</head>
+<body>
+  <div id="app">
+    <api></api>
+  </div>
+
+  <script>
+    Vue.component('api', {
+      template: '<div><div v-if="errored">Something went wrong!</div><div v-else><div v-if="loading">Loading...</div><div v-else><p>currency: {{ item.currency }}, mid: {{item.mid}}, code: {{item.code}}</p></div></div></div>',
+      data() {
+          return {
+              item: null,
+              errored: false,
+              loading: true
+          }
+      },
+      mounted () {
+            axios
+            .get('http://api.nbp.pl/api/exchangerates/tables/a/')
+            .then(response => (this.item = response.data[0].rates[0]))
+            .catch(error => {
+                console.log(error)
+                this.errored = true
+            })
+            .finally(() => this.loading = false)
+        }
+    });
+
+    new Vue({
+      el: '#app',
+    })
+  </script>
+
+</body>
+</html>
